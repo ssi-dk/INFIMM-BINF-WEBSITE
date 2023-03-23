@@ -1,0 +1,48 @@
+# Runnning a powerful RStudio server on Computerome
+
+Computerome is a high performance computing (HPC) cluster at DTU. It offers a great opportunity to run a powerful RStudio server. This guide will show you how to do it.
+
+## Prerequisites
+- A Computerome account (see Step 1)
+- A terminal program (e.g. MobaXterm or Git Bash)
+
+## Step 1: Request a Computerome account
+This can be done by contacting JUZI.
+
+## Step 2: Running RStudio server on Computerome
+1. Log in to Computerome via SSH.
+2. Submit an interactive job to Computerome. For example, to request 40 CPU cores and 180 GB RAM, run the following command:
+```bash
+qsub -I -X -W group_list=<group_id> -A <group_id> -l nodes=1:ppn=40,mem=180g,walltime=8:00:00
+```
+To note:
+- `<group_id>` is the group ID of your Computerome account. You can find it by running `groups` command.
+- It is NOT too much to request 40 CPU cores and 180 GB RAM. Because when you are running an interactive job, Computerome charges the full node anyway.
+- Set a long walltime. Because the walltime can only be extended by contacting DTU HPC support. And it is not guaranteed that they will extend it for you, for example, outside the business hours.
+  
+3. Install RStudio server on the node. For example, to install RStudio server 1.4.1717, run the following command:
+```bash
+module load rstudio-server/2022.07.2-576
+rstudio2022.07.2-576-R.4.2.0-install
+```
+To note:
+- The version of RStudio server, 2022.07.2-576, is the latest.
+- It takes ~3 minutes to install.
+  
+## Step 3: Connecting to RStudio server
+
+Run the following command to connect RStudio server:
+```bash
+ssh -L 8787:<your_interactive_node_name>:8787 <username>@ssh.computerome.dk
+```
+To note:
+- `<your_interactive_node_name>` is the name of the node you are running the interactive job on. You can find it by running `hostname` command, or it is showing on your terminal.
+
+## Step 4: Open RStudio server in your browser
+Open a browser and go to `localhost:8787`. You will see the RStudio login page. Enter your username and password. Then you will be able to use RStudio server.
+
+To note:
+- The username is your Computerome username.
+- The password is the same as your Computerome password.
+
+## Step 5: Install packages

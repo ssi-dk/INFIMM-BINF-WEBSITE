@@ -1,0 +1,38 @@
+# Automatic quality control of single-cell and single-nucleus RNA-seq using valiDrops
+
+valiDrops is a novel data-adaptive method to identify high-quality barcodes and flag dead cells, which can facilitate data QC with one single line. 
+
+## Installation
+
+```{r eval=FALSE}
+install.packages("remotes")
+remotes::install_github("madsen-lab/valiDrops")
+remotes::install_github("immunogenomics/presto")
+```
+
+## Usage
+
+```{r eval=FALSE}
+## Load libraries
+library(Matrix)
+library(Seurat)
+library(valiDrops)
+
+## Loading data
+# Load STARsolo data
+data <- Matrix::readMM("path_to_data/raw/matrix.mtx")
+barcodes <- read.delim("path_to_data/raw/barcodes.tsv", header=FALSE)
+features <- read.delim("path_to_data/raw/features.tsv", header=FALSE)
+colnames(data) <- barcodes[,1]
+rownames(data) <- features[,1]
+
+# Load CellRanger data
+data <- Matrix::readMM("path_to_data/outs/raw_feature_bc_matrix/matrix.mtx.gz")
+barcodes <- read.delim("path_to_data/outs/raw_feature_bc_matrix/barcodes.tsv.gz", header=FALSE)
+features <- read.delim("path_to_data/outs/raw_feature_bc_matrix/features.tsv.gz", header=FALSE)
+colnames(data) <- barcodes[,1]
+rownames(data) <- features[,1]
+
+## Run valiDrops
+valid <- valiDrops(data)
+```

@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "INFIMM-BINF-WEBSITE"
+  title: "INFIMM BINF"
   navbar:
     left:
       - href: index.qmd
