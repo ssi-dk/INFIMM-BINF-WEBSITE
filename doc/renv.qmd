@@ -1,0 +1,29 @@
+# using renv to manage R packages in a project
+
+## Introduction
+renv is a package that helps you manage R packages in a project. renv enables you to create a project-specific library of R packages. It is very flexible, allowing you to use any R package repository, including CRAN, Bioconductor, and GitHub.
+
+## Installation
+renv is available on CRAN, so you can install it with `install.packages()`:
+
+```{r eval=FALSE}
+install.packages("renv")
+```
+
+## Restore a previously saved project
+
+```{r eval=FALSE}
+renv::restore()
+```
+
+## Initializing a project
+
+```{r eval=FALSE}
+renv::init()
+```
+
+### When packages have been changed
+    
+```{r eval=FALSE}
+renv::snapshot()
+``` 

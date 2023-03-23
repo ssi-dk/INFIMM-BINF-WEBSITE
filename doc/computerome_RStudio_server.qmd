@@ -46,3 +46,16 @@ To note:
 - The password is the same as your Computerome password.
 
 ## Step 5: Install packages
+
+It is recommended to use `renv` to manage R packages. See [here](renv.qmd) for more details.
+
+A lot of packages need to be compiled. Computerome has a lot of compilers and libraries installed. To use them, you need to load the corresponding modules.
+
+```{r activate module files, eval=FALSE}
+install.packages("RenvModule")
+library(RenvModule)
+module("load", "tools")
+module("load", "gcc")
+module("load", "intel/perflibs/64/2020_update2")
+module("load", "R/4.2.0-GCC-MKL")
+```
