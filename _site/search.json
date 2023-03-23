@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bioinformatics guide for INFIMM",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html#computerome",
+    "href": "index.html#computerome",
+    "title": "Bioinformatics guide for INFIMM",
+    "section": "Computerome",
+    "text": "Computerome\n\nRunning a powerful RStudio server on Computerome"
+  },
+  {
+    "objectID": "index.html#single-cell-rna-seq",
+    "href": "index.html#single-cell-rna-seq",
+    "title": "Bioinformatics guide for INFIMM",
+    "section": "Single cell RNA-seq",
+    "text": "Single cell RNA-seq\n\nQC | valiDrops- automated data QC for Single cell RNA-seq analysis with valiDrops"
+  }
+]

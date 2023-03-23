@@ -1,0 +1,13 @@
+---
+title: "Bioinformatics guide for INFIMM"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+## Computerome
+* [Running a powerful RStudio server on Computerome](doc/computerome_RStudio_server.md)
+
+## Single cell RNA-seq
+* [QC | valiDrops- automated data QC for Single cell RNA-seq analysis with valiDrops](doc/valiDrops.Rmd)
