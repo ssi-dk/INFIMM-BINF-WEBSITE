@@ -2,4 +2,5 @@
 title: "About"
 ---
 
-About this site
+Bioinformatics guide for Infectious Disease Immunology at SSI-DK.
+

@@ -6,7 +6,8 @@ title: "Bioinformatics guide for INFIMM"
 * [R - Running a powerful RStudio server on Computerome](doc/computerome_RStudio_server.qmd)
 
 ## Single cell RNA-seq
-* [QC | valiDrops - automated data QC for Single cell RNA-seq analysis with valiDrops](doc/valiDrops.qmd)
+* [QC | valiDrops - automated data QC for single cell RNA-seq analysis with valiDrops](doc/valiDrops.qmd)
+* [Workflow - analyze single cell RNA-seq data with Bioconductor](doc/bioconductor_scrnaseq.md)
 
 ## R
 * [R - using renv to manage R packages in a project](doc/renv.qmd)
