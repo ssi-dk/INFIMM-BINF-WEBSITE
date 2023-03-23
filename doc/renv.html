@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>INFIMM BINF – computerome_rstudio_server</title>
+<title>INFIMM BINF – renv</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -165,14 +165,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#runnning-a-powerful-rstudio-server-on-computerome" id="toc-runnning-a-powerful-rstudio-server-on-computerome" class="nav-link active" data-scroll-target="#runnning-a-powerful-rstudio-server-on-computerome">Runnning a powerful RStudio server on Computerome</a>
+  <li><a href="#using-renv-to-manage-r-packages-in-a-project" id="toc-using-renv-to-manage-r-packages-in-a-project" class="nav-link active" data-scroll-target="#using-renv-to-manage-r-packages-in-a-project">using renv to manage R packages in a project</a>
   <ul class="collapse">
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#step-1-request-a-computerome-account" id="toc-step-1-request-a-computerome-account" class="nav-link" data-scroll-target="#step-1-request-a-computerome-account">Step 1: Request a Computerome account</a></li>
-  <li><a href="#step-2-running-rstudio-server-on-computerome" id="toc-step-2-running-rstudio-server-on-computerome" class="nav-link" data-scroll-target="#step-2-running-rstudio-server-on-computerome">Step 2: Running RStudio server on Computerome</a></li>
-  <li><a href="#step-3-connecting-to-rstudio-server" id="toc-step-3-connecting-to-rstudio-server" class="nav-link" data-scroll-target="#step-3-connecting-to-rstudio-server">Step 3: Connecting to RStudio server</a></li>
-  <li><a href="#step-4-open-rstudio-server-in-your-browser" id="toc-step-4-open-rstudio-server-in-your-browser" class="nav-link" data-scroll-target="#step-4-open-rstudio-server-in-your-browser">Step 4: Open RStudio server in your browser</a></li>
-  <li><a href="#step-5-install-packages" id="toc-step-5-install-packages" class="nav-link" data-scroll-target="#step-5-install-packages">Step 5: Install packages</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#restore-a-previously-saved-project" id="toc-restore-a-previously-saved-project" class="nav-link" data-scroll-target="#restore-a-previously-saved-project">Restore a previously saved project</a></li>
+  <li><a href="#initializing-a-project" id="toc-initializing-a-project" class="nav-link" data-scroll-target="#initializing-a-project">Initializing a project</a>
+  <ul class="collapse">
+  <li><a href="#when-packages-have-been-changed" id="toc-when-packages-have-been-changed" class="nav-link" data-scroll-target="#when-packages-have-been-changed">When packages have been changed</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -182,60 +183,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="runnning-a-powerful-rstudio-server-on-computerome" class="level1">
-<h1>Runnning a powerful RStudio server on Computerome</h1>
-<p>Computerome is a high performance computing (HPC) cluster at DTU. It offers a great opportunity to run a powerful RStudio server. This guide will show you how to do it.</p>
-<section id="prerequisites" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<ul>
-<li>A Computerome account (see Step 1)</li>
-<li>A terminal program (e.g.&nbsp;MobaXterm or Git Bash)</li>
-</ul>
+<section id="using-renv-to-manage-r-packages-in-a-project" class="level1">
+<h1>using renv to manage R packages in a project</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>renv is a package that helps you manage R packages in a project. renv enables you to create a project-specific library of R packages. It is very flexible, allowing you to use any R package repository, including CRAN, Bioconductor, and GitHub.</p>
 </section>
-<section id="step-1-request-a-computerome-account" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-request-a-computerome-account">Step 1: Request a Computerome account</h2>
-<p>This can be done by contacting JUZI.</p>
-</section>
-<section id="step-2-running-rstudio-server-on-computerome" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-running-rstudio-server-on-computerome">Step 2: Running RStudio server on Computerome</h2>
-<ol type="1">
-<li>Log in to Computerome via SSH.</li>
-<li>Submit an interactive job to Computerome. For example, to request 40 CPU cores and 180 GB RAM, run the following command:</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> <span class="at">-I</span> <span class="at">-X</span> <span class="at">-W</span> group_list=<span class="op">&lt;</span>group_id<span class="op">&gt;</span> -A <span class="op">&lt;</span>group_id<span class="op">&gt;</span> -l nodes=1:ppn=40,mem=180g,walltime=8:00:00</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To note: - <code>&lt;group_id&gt;</code> is the group ID of your Computerome account. You can find it by running <code>groups</code> command. - It is NOT too much to request 40 CPU cores and 180 GB RAM. Because when you are running an interactive job, Computerome charges the full node anyway. - Set a long walltime. Because the walltime can only be extended by contacting DTU HPC support. And it is not guaranteed that they will extend it for you, for example, outside the business hours.</p>
-<ol start="3" type="1">
-<li>Install RStudio server on the node. For example, to install RStudio server 1.4.1717, run the following command:</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load rstudio-server/2022.07.2-576</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rstudio2022.07.2-576-R.4.2.0-install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To note: - The version of RStudio server, 2022.07.2-576, is the latest. - It takes ~3 minutes to install.</p>
-</section>
-<section id="step-3-connecting-to-rstudio-server" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-connecting-to-rstudio-server">Step 3: Connecting to RStudio server</h2>
-<p>Run the following command to connect RStudio server:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-L</span> 8787:<span class="op">&lt;</span>your_interactive_node_name<span class="op">&gt;</span>:8787 <span class="op">&lt;</span>username<span class="op">&gt;</span>@ssh.computerome.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To note: - <code>&lt;your_interactive_node_name&gt;</code> is the name of the node you are running the interactive job on. You can find it by running <code>hostname</code> command, or it is showing on your terminal.</p>
-</section>
-<section id="step-4-open-rstudio-server-in-your-browser" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-open-rstudio-server-in-your-browser">Step 4: Open RStudio server in your browser</h2>
-<p>Open a browser and go to <code>localhost:8787</code>. You will see the RStudio login page. Enter your username and password. Then you will be able to use RStudio server.</p>
-<p>To note: - The username is your Computerome username. - The password is the same as your Computerome password.</p>
-</section>
-<section id="step-5-install-packages" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-install-packages">Step 5: Install packages</h2>
-<p>It is recommended to use <code>renv</code> to manage R packages. See <a href="doc/renv.Rmd">here</a> for more details.</p>
-<p>A lot of packages need to be compiled. Computerome has a lot of compilers and libraries installed. To use them, you need to load the corresponding modules.</p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>renv is available on CRAN, so you can install it with <code>install.packages()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"RenvModule"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RenvModule)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">module</span>(<span class="st">"load"</span>, <span class="st">"tools"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">module</span>(<span class="st">"load"</span>, <span class="st">"gcc"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">module</span>(<span class="st">"load"</span>, <span class="st">"intel/perflibs/64/2020_update2"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">module</span>(<span class="st">"load"</span>, <span class="st">"R/4.2.0-GCC-MKL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="restore-a-previously-saved-project" class="level2">
+<h2 class="anchored" data-anchor-id="restore-a-previously-saved-project">Restore a previously saved project</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="initializing-a-project" class="level2">
+<h2 class="anchored" data-anchor-id="initializing-a-project">Initializing a project</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="when-packages-have-been-changed" class="level3">
+<h3 class="anchored" data-anchor-id="when-packages-have-been-changed">When packages have been changed</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
+</section>
 </section>
 </section>
 
