@@ -32,13 +32,20 @@
     "href": "index.html",
     "title": "Bioinformatics guide for INFIMM",
     "section": "",
-    "text": "Running a powerful RStudio server on Computerome"
+    "text": "R - Running a powerful RStudio server on Computerome"
   },
   {
     "objectID": "index.html#single-cell-rna-seq",
     "href": "index.html#single-cell-rna-seq",
     "title": "Bioinformatics guide for INFIMM",
     "section": "Single cell RNA-seq",
-    "text": "Single cell RNA-seq\n\nQC | valiDrops- automated data QC for Single cell RNA-seq analysis with valiDrops"
+    "text": "Single cell RNA-seq\n\nQC | valiDrops - automated data QC for Single cell RNA-seq analysis with valiDrops"
+  },
+  {
+    "objectID": "index.html#r",
+    "href": "index.html#r",
+    "title": "Bioinformatics guide for INFIMM",
+    "section": "R",
+    "text": "R\n\nR - using renv to manage R packages in a project"
   }
 ]
