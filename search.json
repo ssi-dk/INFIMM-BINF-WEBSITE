@@ -7,18 +7,25 @@
     "text": "About this site"
   },
   {
+    "objectID": "doc/computerome_RStudio_server.html",
+    "href": "doc/computerome_RStudio_server.html",
+    "title": "INFIMM BINF",
+    "section": "",
+    "text": "Computerome is a high performance computing (HPC) cluster at DTU. It offers a great opportunity to run a powerful RStudio server. This guide will show you how to do it.\n\n\n\nA Computerome account (see Step 1)\nA terminal program (e.g. MobaXterm or Git Bash)\n\n\n\n\nThis can be done by contacting JUZI.\n\n\n\n\nLog in to Computerome via SSH.\nSubmit an interactive job to Computerome. For example, to request 40 CPU cores and 180 GB RAM, run the following command:\n\nqsub -I -X -W group_list=<group_id> -A <group_id> -l nodes=1:ppn=40,mem=180g,walltime=8:00:00\nTo note: - <group_id> is the group ID of your Computerome account. You can find it by running groups command. - It is NOT too much to request 40 CPU cores and 180 GB RAM. Because when you are running an interactive job, Computerome charges the full node anyway. - Set a long walltime. Because the walltime can only be extended by contacting DTU HPC support. And it is not guaranteed that they will extend it for you, for example, outside the business hours.\n\nInstall RStudio server on the node. For example, to install RStudio server 1.4.1717, run the following command:\n\nmodule load rstudio-server/2022.07.2-576\nrstudio2022.07.2-576-R.4.2.0-install\nTo note: - The version of RStudio server, 2022.07.2-576, is the latest. - It takes ~3 minutes to install.\n\n\n\nRun the following command to connect RStudio server:\nssh -L 8787:<your_interactive_node_name>:8787 <username>@ssh.computerome.dk\nTo note: - <your_interactive_node_name> is the name of the node you are running the interactive job on. You can find it by running hostname command, or it is showing on your terminal.\n\n\n\nOpen a browser and go to localhost:8787. You will see the RStudio login page. Enter your username and password. Then you will be able to use RStudio server.\nTo note: - The username is your Computerome username. - The password is the same as your Computerome password."
+  },
+  {
+    "objectID": "doc/valiDrops.html",
+    "href": "doc/valiDrops.html",
+    "title": "INFIMM BINF",
+    "section": "",
+    "text": "valiDrops is a novel data-adaptive method to identify high-quality barcodes and flag dead cells, which can facilitate data QC with one single line.\n\n\n\ninstall.packages(\"remotes\")\nremotes::install_github(\"madsen-lab/valiDrops\")\nremotes::install_github(\"immunogenomics/presto\")\n\n\n\n\n\n## Load libraries\nlibrary(Matrix)\nlibrary(Seurat)\nlibrary(valiDrops)\n\n## Loading data\n# Load STARsolo data\ndata <- Matrix::readMM(\"path_to_data/raw/matrix.mtx\")\nbarcodes <- read.delim(\"path_to_data/raw/barcodes.tsv\", header=FALSE)\nfeatures <- read.delim(\"path_to_data/raw/features.tsv\", header=FALSE)\ncolnames(data) <- barcodes[,1]\nrownames(data) <- features[,1]\n\n# Load CellRanger data\ndata <- Matrix::readMM(\"path_to_data/outs/raw_feature_bc_matrix/matrix.mtx.gz\")\nbarcodes <- read.delim(\"path_to_data/outs/raw_feature_bc_matrix/barcodes.tsv.gz\", header=FALSE)\nfeatures <- read.delim(\"path_to_data/outs/raw_feature_bc_matrix/features.tsv.gz\", header=FALSE)\ncolnames(data) <- barcodes[,1]\nrownames(data) <- features[,1]\n\n## Run valiDrops\nvalid <- valiDrops(data)"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Bioinformatics guide for INFIMM",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
-  },
-  {
-    "objectID": "index.html#computerome",
-    "href": "index.html#computerome",
-    "title": "Bioinformatics guide for INFIMM",
-    "section": "Computerome",
-    "text": "Computerome\n\nRunning a powerful RStudio server on Computerome"
+    "text": "Running a powerful RStudio server on Computerome"
   },
   {
     "objectID": "index.html#single-cell-rna-seq",
