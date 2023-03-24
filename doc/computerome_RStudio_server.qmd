@@ -49,7 +49,10 @@ To note:
 
 It is recommended to use `renv` to manage R packages. See [here](renv.qmd) for more details.
 
-A lot of packages need to be compiled. Computerome has a lot of compilers and libraries installed. To use them, you need to load the corresponding modules.
+A lot of packages need to be compiled. 
+Computerome has a lot of compilers and libraries installed, as well as a lot of R packages installed. 
+To use them, you need to load the corresponding modules.
+It is also a good idea to store the following code in `.Rprofile`, so that you don't need to load the modules every time you start RStudio server.
 
 ```{r activate module files, eval=FALSE}
 install.packages("RenvModule")

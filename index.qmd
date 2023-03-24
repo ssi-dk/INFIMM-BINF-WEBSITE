@@ -2,12 +2,17 @@
 title: "Bioinformatics guide for INFIMM"
 ---
 
-## Computerome
-* [R - Running a powerful RStudio server on Computerome](doc/computerome_RStudio_server.qmd)
+Omics analysis, single cell RNA-seq, image analysis, using high performance computer (HPC) and more.
 
 ## Single cell RNA-seq
-* [QC | valiDrops - automated data QC for single cell RNA-seq analysis with valiDrops](doc/valiDrops.qmd)
-* [Workflow - analyze single cell RNA-seq data with Bioconductor](doc/bioconductor_scrnaseq.md)
+* [QC | valiDrops - automated data QC for Single cell RNA-seq analysis with valiDrops](doc/valiDrops.qmd)
 
 ## R
 * [R - using renv to manage R packages in a project](doc/renv.qmd)
+
+## Image data
+* Prof. Wolfgang Huber's [Working with Image Data in R](https://github.com/wolfganghuber/WorkingWithImageData)
+
+## Computerome
+* [R - Running a powerful RStudio server on Computerome](doc/computerome_RStudio_server.qmd)
+* [Disk Quota exceeded](doc/computerome_disk_quota.md)
