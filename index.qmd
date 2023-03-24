@@ -7,11 +7,15 @@ Omics analysis, single cell RNA-seq, image analysis, using high performance comp
 ## Single cell RNA-seq
 * [QC | valiDrops - automated data QC for Single cell RNA-seq analysis with valiDrops](doc/valiDrops.qmd)
 
+## RNA-seq
+* TODO - [RNA-seq - mapping](doc/RNA-seq_mapping.md)
+
 ## R
 * [R - using renv to manage R packages in a project](doc/renv.qmd)
 
 ## Image data
 * Prof. Wolfgang Huber's [Working with Image Data in R](https://github.com/wolfganghuber/WorkingWithImageData)
+    * as well as his book [Modern Statistics for Modern Biology](https://www.huber.embl.de/msmb/)
 
 ## Computerome
 * [R - Running a powerful RStudio server on Computerome](doc/computerome_RStudio_server.qmd)
