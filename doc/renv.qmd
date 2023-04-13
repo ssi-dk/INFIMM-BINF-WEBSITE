@@ -27,3 +27,11 @@ renv::init()
 ```{r eval=FALSE}
 renv::snapshot()
 ``` 
+
+### Change renv .cache location
+
+Check here for more information: https://rstudio.github.io/renv/reference/paths.html
+
+```{r eval=FALSE}
+Sys.setenv(RENV_PATHS_ROOT = "<new_directory>/_cache_R")
+```
