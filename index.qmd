@@ -18,5 +18,6 @@ Omics analysis, single cell RNA-seq, image analysis, using high performance comp
     * as well as his book [Modern Statistics for Modern Biology](https://www.huber.embl.de/msmb/)
 
 ## Computerome
+* [VS Code - Running a modern IDE on Computerome](doc/computerome_vscode.md)
 * [R - Running a powerful RStudio server on Computerome](doc/computerome_RStudio_server.qmd)
 * [Disk Quota exceeded](doc/computerome_disk_quota.md)
