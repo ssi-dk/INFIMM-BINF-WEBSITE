@@ -4,35 +4,147 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "Bioinformatics guide for Infectious Disease Immunology at SSI-DK."
+  },
+  {
+    "objectID": "doc/bioconductor_scrnaseq.html",
+    "href": "doc/bioconductor_scrnaseq.html",
+    "title": "Analyze scRNA-seq data by Bioconductor",
+    "section": "",
+    "text": "Analyze scRNA-seq data by Bioconductor\nBioconductor, Seurat, and Scanpy are three popular ecosystems for analyzing scRNA-seq data.\nBioconductor is a project which develops, supports and shares free open source software with a focus on rigorous and reproducible analysis of data for many different biological assays including single-cell. A homogeneous developer and user experience and extensive documentation with user friendly vignettes are the biggest strengths of Bioconductor. Seurat is a well regarded R package specifically designed for the analysis of single-cell data. It offers tooling for all steps of the analysis including multimodal and spatial data. The well written vignettes and the large user-base is what Seurat is known for. However, both R options can run into scalability issues for extremely large datasets (more than half a million cells) which motivated the Python based community to develop the scverse ecosystem. scverse is an organization and an ecosystem dedicated to foundational tools in the life sciences with an initial focus on single-cell. Scalability, extendability and strong interoperability with the existing Python data and machine learning tooling are some of the advantages of the scverse ecosystem."
+  },
+  {
+    "objectID": "doc/computerome_disk_quota.html",
+    "href": "doc/computerome_disk_quota.html",
+    "title": "Disk quota exceeded",
+    "section": "",
+    "text": "Disk quota exceeded\nComputerome allocates 10 Gb disk quota for each user’s home (~). If you exceed this quota, you will not be able to write to your home directory. A lot of commands will fail with strange error messages.\nIt is always a good practice to store data in your group data folder (/home/projects//data) or your personal folder in your group (/home/projects//people/). However, sometimes it could be tricky to find out which files are taking up the space in your home folder (~).\nFind the 10 largest files in your home folder:\ndu -aBm ~ 2&gt;/dev/null | sort -nr | head -n 10"
   },
   {
     "objectID": "doc/computerome_RStudio_server.html",
     "href": "doc/computerome_RStudio_server.html",
-    "title": "INFIMM BINF",
+    "title": "Runnning a powerful RStudio server on Computerome",
     "section": "",
-    "text": "Computerome is a high performance computing (HPC) cluster at DTU. It offers a great opportunity to run a powerful RStudio server. This guide will show you how to do it.\n\n\n\nA Computerome account (see Step 1)\nA terminal program (e.g. MobaXterm or Git Bash)\n\n\n\n\nThis can be done by contacting JUZI.\n\n\n\n\nLog in to Computerome via SSH.\nSubmit an interactive job to Computerome. For example, to request 40 CPU cores and 180 GB RAM, run the following command:\n\nqsub -I -X -W group_list=<group_id> -A <group_id> -l nodes=1:ppn=40,mem=180g,walltime=8:00:00\nTo note: - <group_id> is the group ID of your Computerome account. You can find it by running groups command. - It is NOT too much to request 40 CPU cores and 180 GB RAM. Because when you are running an interactive job, Computerome charges the full node anyway. - Set a long walltime. Because the walltime can only be extended by contacting DTU HPC support. And it is not guaranteed that they will extend it for you, for example, outside the business hours.\n\nInstall RStudio server on the node. For example, to install RStudio server 1.4.1717, run the following command:\n\nmodule load rstudio-server/2022.07.2-576\nrstudio2022.07.2-576-R.4.2.0-install\nTo note: - The version of RStudio server, 2022.07.2-576, is the latest. - It takes ~3 minutes to install.\n\n\n\nRun the following command to connect RStudio server:\nssh -L 8787:<your_interactive_node_name>:8787 <username>@ssh.computerome.dk\nTo note: - <your_interactive_node_name> is the name of the node you are running the interactive job on. You can find it by running hostname command, or it is showing on your terminal.\n\n\n\nOpen a browser and go to localhost:8787. You will see the RStudio login page. Enter your username and password. Then you will be able to use RStudio server.\nTo note: - The username is your Computerome username. - The password is the same as your Computerome password.\n\n\n\nIt is recommended to use renv to manage R packages. See here for more details.\nA lot of packages need to be compiled. Computerome has a lot of compilers and libraries installed. To use them, you need to load the corresponding modules.\n\ninstall.packages(\"RenvModule\")\nlibrary(RenvModule)\nmodule(\"load\", \"tools\")\nmodule(\"load\", \"gcc\")\nmodule(\"load\", \"intel/perflibs/64/2020_update2\")\nmodule(\"load\", \"R/4.2.0-GCC-MKL\")"
+    "text": "Computerome is a high performance computing (HPC) cluster at DTU. It offers a great opportunity to run a powerful RStudio server. This guide will show you how to do it.\n\n\n\nA Computerome account (see Step 1)\nA terminal program (e.g. MobaXterm or Git Bash)\n\n\n\n\nThis can be done by contacting JUZI.\n\n\n\n\nLog in to Computerome via SSH.\nSubmit an interactive job to Computerome. For example, to request 40 CPU cores and 180 GB RAM, run the following command:\n\nqsub -I -X -W group_list=&lt;group_id&gt; -A &lt;group_id&gt; -l nodes=1:ppn=40,mem=180g,walltime=8:00:00\nTo note: - &lt;group_id&gt; is the group ID of your Computerome account. You can find it by running groups command. - It is NOT too much to request 40 CPU cores and 180 GB RAM. Because when you are running an interactive job, Computerome charges the full node anyway. - Set a long walltime. Because the walltime can only be extended by contacting DTU HPC support. And it is not guaranteed that they will extend it for you, for example, outside the business hours.\n\nInstall RStudio server on the node. For example, to install RStudio server 1.4.1717, run the following command:\n\nmodule load rstudio-server/2022.07.2-576\nrstudio2022.07.2-576-R.4.2.0-install\nTo note: - The version of RStudio server, 2022.07.2-576, is the latest. - It takes ~3 minutes to install.\n\n\n\nRun the following command to connect RStudio server:\nssh -L 8787:&lt;your_interactive_node_name&gt;:8787 &lt;username&gt;@ssh.computerome.dk\nTo note: - &lt;your_interactive_node_name&gt; is the name of the node you are running the interactive job on. You can find it by running hostname command, or it is showing on your terminal.\n\n\n\nOpen a browser and go to localhost:8787. You will see the RStudio login page. Enter your username and password. Then you will be able to use RStudio server.\nTo note: - The username is your Computerome username. - The password is the same as your Computerome password.\n\n\n\nIt is recommended to use renv to manage R packages. See here for more details.\nA lot of packages need to be compiled. Computerome has a lot of compilers and libraries installed, as well as a lot of R packages installed. To use them, you need to load the corresponding modules. It is also a good idea to store the following code in .Rprofile, so that you don’t need to load the modules every time you start RStudio server.\n\ninstall.packages(\"RenvModule\")\nlibrary(RenvModule)\nmodule(\"load\", \"tools\")\nmodule(\"load\", \"gcc\")\nmodule(\"load\", \"intel/perflibs/64/2020_update2\")\nmodule(\"load\", \"R/4.2.0-GCC-MKL\")"
+  },
+  {
+    "objectID": "doc/computerome_RStudio_server.html#prerequisites",
+    "href": "doc/computerome_RStudio_server.html#prerequisites",
+    "title": "Runnning a powerful RStudio server on Computerome",
+    "section": "",
+    "text": "A Computerome account (see Step 1)\nA terminal program (e.g. MobaXterm or Git Bash)"
+  },
+  {
+    "objectID": "doc/computerome_RStudio_server.html#step-1-request-a-computerome-account",
+    "href": "doc/computerome_RStudio_server.html#step-1-request-a-computerome-account",
+    "title": "Runnning a powerful RStudio server on Computerome",
+    "section": "",
+    "text": "This can be done by contacting JUZI."
+  },
+  {
+    "objectID": "doc/computerome_RStudio_server.html#step-2-running-rstudio-server-on-computerome",
+    "href": "doc/computerome_RStudio_server.html#step-2-running-rstudio-server-on-computerome",
+    "title": "Runnning a powerful RStudio server on Computerome",
+    "section": "",
+    "text": "Log in to Computerome via SSH.\nSubmit an interactive job to Computerome. For example, to request 40 CPU cores and 180 GB RAM, run the following command:\n\nqsub -I -X -W group_list=&lt;group_id&gt; -A &lt;group_id&gt; -l nodes=1:ppn=40,mem=180g,walltime=8:00:00\nTo note: - &lt;group_id&gt; is the group ID of your Computerome account. You can find it by running groups command. - It is NOT too much to request 40 CPU cores and 180 GB RAM. Because when you are running an interactive job, Computerome charges the full node anyway. - Set a long walltime. Because the walltime can only be extended by contacting DTU HPC support. And it is not guaranteed that they will extend it for you, for example, outside the business hours.\n\nInstall RStudio server on the node. For example, to install RStudio server 1.4.1717, run the following command:\n\nmodule load rstudio-server/2022.07.2-576\nrstudio2022.07.2-576-R.4.2.0-install\nTo note: - The version of RStudio server, 2022.07.2-576, is the latest. - It takes ~3 minutes to install."
+  },
+  {
+    "objectID": "doc/computerome_RStudio_server.html#step-3-connecting-to-rstudio-server",
+    "href": "doc/computerome_RStudio_server.html#step-3-connecting-to-rstudio-server",
+    "title": "Runnning a powerful RStudio server on Computerome",
+    "section": "",
+    "text": "Run the following command to connect RStudio server:\nssh -L 8787:&lt;your_interactive_node_name&gt;:8787 &lt;username&gt;@ssh.computerome.dk\nTo note: - &lt;your_interactive_node_name&gt; is the name of the node you are running the interactive job on. You can find it by running hostname command, or it is showing on your terminal."
+  },
+  {
+    "objectID": "doc/computerome_RStudio_server.html#step-4-open-rstudio-server-in-your-browser",
+    "href": "doc/computerome_RStudio_server.html#step-4-open-rstudio-server-in-your-browser",
+    "title": "Runnning a powerful RStudio server on Computerome",
+    "section": "",
+    "text": "Open a browser and go to localhost:8787. You will see the RStudio login page. Enter your username and password. Then you will be able to use RStudio server.\nTo note: - The username is your Computerome username. - The password is the same as your Computerome password."
+  },
+  {
+    "objectID": "doc/computerome_RStudio_server.html#step-5-install-packages",
+    "href": "doc/computerome_RStudio_server.html#step-5-install-packages",
+    "title": "Runnning a powerful RStudio server on Computerome",
+    "section": "",
+    "text": "It is recommended to use renv to manage R packages. See here for more details.\nA lot of packages need to be compiled. Computerome has a lot of compilers and libraries installed, as well as a lot of R packages installed. To use them, you need to load the corresponding modules. It is also a good idea to store the following code in .Rprofile, so that you don’t need to load the modules every time you start RStudio server.\n\ninstall.packages(\"RenvModule\")\nlibrary(RenvModule)\nmodule(\"load\", \"tools\")\nmodule(\"load\", \"gcc\")\nmodule(\"load\", \"intel/perflibs/64/2020_update2\")\nmodule(\"load\", \"R/4.2.0-GCC-MKL\")"
+  },
+  {
+    "objectID": "doc/computerome_vscode.html",
+    "href": "doc/computerome_vscode.html",
+    "title": "VS Code on Computerome",
+    "section": "",
+    "text": "VS Code on Computerome\nVS Code is a free, open-source, cross-platform code editor developed by Microsoft. It is a very popular editor among developers, and it is also used by many researchers. Here is a guide on how to install and use VS Code on Computerome.\n\nOpen a virtual desktop session by ThinLinc\nDownload and install VS Code\n\nDownload VS Code\nExtract the downloaded file (tar.gz) by running tar -xvzf &lt;filename&gt;\n\nTest VS Code by running ./code in the extracted folder. Often, you will get an error message. You could add ./code --no-sandbox to the command to run VS Code without sandboxing.\nYou can add the following line to your .bashrc file:\n\nalias code='./path/to/code --no-sandbox'"
   },
   {
     "objectID": "doc/renv.html",
     "href": "doc/renv.html",
-    "title": "INFIMM BINF",
+    "title": "using renv to manage R packages in a project",
     "section": "",
-    "text": "renv is a package that helps you manage R packages in a project. renv enables you to create a project-specific library of R packages. It is very flexible, allowing you to use any R package repository, including CRAN, Bioconductor, and GitHub.\n\n\n\nrenv is available on CRAN, so you can install it with install.packages():\n\ninstall.packages(\"renv\")\n\n\n\n\n\nrenv::restore()\n\n\n\n\n\nrenv::init()\n\n\n\n\nrenv::snapshot()"
+    "text": "renv is a package that helps you manage R packages in a project. renv enables you to create a project-specific library of R packages. It is very flexible, allowing you to use any R package repository, including CRAN, Bioconductor, and GitHub.\n\n\n\nrenv is available on CRAN, so you can install it with install.packages():\n\ninstall.packages(\"renv\")\n\n\n\n\n\nrenv::restore()\n\n\n\n\n\nrenv::init()\n\n\n\n\nrenv::snapshot()\n\n\n\n\nCheck here for more information: https://rstudio.github.io/renv/reference/paths.html\n\nSys.setenv(RENV_PATHS_ROOT = \"&lt;new_directory&gt;/_cache_R\")"
+  },
+  {
+    "objectID": "doc/renv.html#introduction",
+    "href": "doc/renv.html#introduction",
+    "title": "using renv to manage R packages in a project",
+    "section": "",
+    "text": "renv is a package that helps you manage R packages in a project. renv enables you to create a project-specific library of R packages. It is very flexible, allowing you to use any R package repository, including CRAN, Bioconductor, and GitHub."
+  },
+  {
+    "objectID": "doc/renv.html#installation",
+    "href": "doc/renv.html#installation",
+    "title": "using renv to manage R packages in a project",
+    "section": "",
+    "text": "renv is available on CRAN, so you can install it with install.packages():\n\ninstall.packages(\"renv\")"
+  },
+  {
+    "objectID": "doc/renv.html#restore-a-previously-saved-project",
+    "href": "doc/renv.html#restore-a-previously-saved-project",
+    "title": "using renv to manage R packages in a project",
+    "section": "",
+    "text": "renv::restore()"
+  },
+  {
+    "objectID": "doc/renv.html#initializing-a-project",
+    "href": "doc/renv.html#initializing-a-project",
+    "title": "using renv to manage R packages in a project",
+    "section": "",
+    "text": "renv::init()\n\n\n\n\nrenv::snapshot()\n\n\n\n\nCheck here for more information: https://rstudio.github.io/renv/reference/paths.html\n\nSys.setenv(RENV_PATHS_ROOT = \"&lt;new_directory&gt;/_cache_R\")"
   },
   {
     "objectID": "doc/valiDrops.html",
     "href": "doc/valiDrops.html",
-    "title": "INFIMM BINF",
+    "title": "Automatic quality control of single-cell and single-nucleus RNA-seq using valiDrops",
     "section": "",
-    "text": "valiDrops is a novel data-adaptive method to identify high-quality barcodes and flag dead cells, which can facilitate data QC with one single line.\n\n\n\ninstall.packages(\"remotes\")\nremotes::install_github(\"madsen-lab/valiDrops\")\nremotes::install_github(\"immunogenomics/presto\")\n\n\n\n\n\n## Load libraries\nlibrary(Matrix)\nlibrary(Seurat)\nlibrary(valiDrops)\n\n## Loading data\n# Load STARsolo data\ndata <- Matrix::readMM(\"path_to_data/raw/matrix.mtx\")\nbarcodes <- read.delim(\"path_to_data/raw/barcodes.tsv\", header=FALSE)\nfeatures <- read.delim(\"path_to_data/raw/features.tsv\", header=FALSE)\ncolnames(data) <- barcodes[,1]\nrownames(data) <- features[,1]\n\n# Load CellRanger data\ndata <- Matrix::readMM(\"path_to_data/outs/raw_feature_bc_matrix/matrix.mtx.gz\")\nbarcodes <- read.delim(\"path_to_data/outs/raw_feature_bc_matrix/barcodes.tsv.gz\", header=FALSE)\nfeatures <- read.delim(\"path_to_data/outs/raw_feature_bc_matrix/features.tsv.gz\", header=FALSE)\ncolnames(data) <- barcodes[,1]\nrownames(data) <- features[,1]\n\n## Run valiDrops\nvalid <- valiDrops(data)"
+    "text": "valiDrops is a novel data-adaptive method to identify high-quality barcodes and flag dead cells, which can facilitate data QC with one single line.\n\n\n\ninstall.packages(\"remotes\")\nremotes::install_github(\"madsen-lab/valiDrops\")\nremotes::install_github(\"immunogenomics/presto\")\n\n\n\n\n\n## Load libraries\nlibrary(Matrix)\nlibrary(Seurat)\nlibrary(valiDrops)\n\n## Loading data\n# Load STARsolo data\ndata &lt;- Matrix::readMM(\"path_to_data/raw/matrix.mtx\")\nbarcodes &lt;- read.delim(\"path_to_data/raw/barcodes.tsv\", header=FALSE)\nfeatures &lt;- read.delim(\"path_to_data/raw/features.tsv\", header=FALSE)\ncolnames(data) &lt;- barcodes[,1]\nrownames(data) &lt;- features[,1]\n\n# Load CellRanger data\ndata &lt;- Matrix::readMM(\"path_to_data/outs/raw_feature_bc_matrix/matrix.mtx.gz\")\nbarcodes &lt;- read.delim(\"path_to_data/outs/raw_feature_bc_matrix/barcodes.tsv.gz\", header=FALSE)\nfeatures &lt;- read.delim(\"path_to_data/outs/raw_feature_bc_matrix/features.tsv.gz\", header=FALSE)\ncolnames(data) &lt;- barcodes[,1]\nrownames(data) &lt;- features[,1]\n\n## Run valiDrops\nvalid &lt;- valiDrops(data)"
+  },
+  {
+    "objectID": "doc/valiDrops.html#installation",
+    "href": "doc/valiDrops.html#installation",
+    "title": "Automatic quality control of single-cell and single-nucleus RNA-seq using valiDrops",
+    "section": "",
+    "text": "install.packages(\"remotes\")\nremotes::install_github(\"madsen-lab/valiDrops\")\nremotes::install_github(\"immunogenomics/presto\")"
+  },
+  {
+    "objectID": "doc/valiDrops.html#usage",
+    "href": "doc/valiDrops.html#usage",
+    "title": "Automatic quality control of single-cell and single-nucleus RNA-seq using valiDrops",
+    "section": "",
+    "text": "## Load libraries\nlibrary(Matrix)\nlibrary(Seurat)\nlibrary(valiDrops)\n\n## Loading data\n# Load STARsolo data\ndata &lt;- Matrix::readMM(\"path_to_data/raw/matrix.mtx\")\nbarcodes &lt;- read.delim(\"path_to_data/raw/barcodes.tsv\", header=FALSE)\nfeatures &lt;- read.delim(\"path_to_data/raw/features.tsv\", header=FALSE)\ncolnames(data) &lt;- barcodes[,1]\nrownames(data) &lt;- features[,1]\n\n# Load CellRanger data\ndata &lt;- Matrix::readMM(\"path_to_data/outs/raw_feature_bc_matrix/matrix.mtx.gz\")\nbarcodes &lt;- read.delim(\"path_to_data/outs/raw_feature_bc_matrix/barcodes.tsv.gz\", header=FALSE)\nfeatures &lt;- read.delim(\"path_to_data/outs/raw_feature_bc_matrix/features.tsv.gz\", header=FALSE)\ncolnames(data) &lt;- barcodes[,1]\nrownames(data) &lt;- features[,1]\n\n## Run valiDrops\nvalid &lt;- valiDrops(data)"
+  },
+  {
+    "objectID": "doc/workshop_image_data_R.html",
+    "href": "doc/workshop_image_data_R.html",
+    "title": "Work with Image data in R",
+    "section": "",
+    "text": "Work with Image data in R"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Bioinformatics guide for INFIMM",
     "section": "",
-    "text": "R - Running a powerful RStudio server on Computerome"
+    "text": "Omics analysis, single cell RNA-seq, image analysis, using high performance computer (HPC) and more."
   },
   {
     "objectID": "index.html#single-cell-rna-seq",
@@ -42,10 +154,31 @@
     "text": "Single cell RNA-seq\n\nQC | valiDrops - automated data QC for Single cell RNA-seq analysis with valiDrops"
   },
   {
+    "objectID": "index.html#rna-seq",
+    "href": "index.html#rna-seq",
+    "title": "Bioinformatics guide for INFIMM",
+    "section": "RNA-seq",
+    "text": "RNA-seq\n\nTODO - RNA-seq - mapping"
+  },
+  {
     "objectID": "index.html#r",
     "href": "index.html#r",
     "title": "Bioinformatics guide for INFIMM",
     "section": "R",
     "text": "R\n\nR - using renv to manage R packages in a project"
+  },
+  {
+    "objectID": "index.html#image-data",
+    "href": "index.html#image-data",
+    "title": "Bioinformatics guide for INFIMM",
+    "section": "Image data",
+    "text": "Image data\n\nProf. Wolfgang Huber’s Working with Image Data in R\n\nas well as his book Modern Statistics for Modern Biology"
+  },
+  {
+    "objectID": "index.html#computerome",
+    "href": "index.html#computerome",
+    "title": "Bioinformatics guide for INFIMM",
+    "section": "Computerome",
+    "text": "Computerome\n\nR - Running a powerful RStudio server on Computerome\nDisk Quota exceeded"
   }
 ]
